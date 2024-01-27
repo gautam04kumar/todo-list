@@ -1,11 +1,13 @@
 import './App.css'
+import Todo from './Component/Todo'
+
 
 function App() {
 
 
   return (
     <section>
-      <h1>hello</h1>
+      <Todo />
     </section>
   )
 }
