@@ -21,18 +21,20 @@ function Todo() {
         else if (!todo.includes(form.current.todo.value)) {
             setTodo(prevItem => [...prevItem, form.current.todo.value])
         }
-        // form.current.todo.value = "";
-    }
-    const editTodolist = (index,value) => {
 
-        setEditTodo(index,);
+        form.current.todo.value="";
+    }
+
+    const editTodolist = (index) => {
+
+        setEditTodo(index);
 
         form.current.todo.value = todo[index];
     };
 
     const deleteTodo = (index) => {
         const updateTodo = [...todo];
-        updateTodo.splice(index, 1);
+        updateTodo.splice(index, 1); 
         setTodo(updateTodo);
     };
     const arrayDataItems = todo.map((item, index) => (
@@ -40,10 +42,10 @@ function Todo() {
             {item}
             <button onClick={() => editTodolist(index)}>Edit</button>
             <button onClick={() => deleteTodo(index)}>Delete</button>
-            
+
         </li>));
-        console.log(arrayDataItems)
-        
+
+
 
     return (
         <section>
@@ -52,12 +54,16 @@ function Todo() {
                     <input type='text' name='todo'
                         placeholder='Enter the todo' />
 
-                    <button type='submit' onClick={handleTodo}>SUBMIT</button>
+                    <button type='submit' onClick={handleTodo}>
+                        {
+                          form.current.todo.value ===  '' ? "add" : "update"
+                        }
+                    </button>
                 </form>
             </section>
             <section>
-{/* //TODO :show todo list */}
-                <ul> new{arrayDataItems}</ul>
+                {/* //TODO :show todo list */}
+                <ul>{arrayDataItems}</ul>
             </section>
         </section>
     )
