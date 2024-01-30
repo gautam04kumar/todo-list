@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 
 function Todo() {
     const form = useRef();
+    const inputRef = useRef();
+
     const [todo, setTodo] = useState([]);
     const [editTodo, setEditTodo] = useState(null)
 
@@ -12,17 +14,23 @@ function Todo() {
     let handleTodo = (event) => {
         event.preventDefault();
         // const todoValue=form.current.todo.value
-        if (editTodo !== null) {
-            const updateTodo = [...todo];
-            updateTodo[editTodo] = form.current.todo.value;
-            setTodo(updateTodo)
-            setEditTodo(null)
-        }
-        else if (!todo.includes(form.current.todo.value)) {
-            setTodo(prevItem => [...prevItem, form.current.todo.value])
-        }
+        // if (editTodo !== null) {
+        //     const updateTodo = [...todo];
+        //     updateTodo[editTodo] = form.current.todo.value;
+        //     setTodo(updateTodo)
+        //     setEditTodo(null)
+        // }
+        // else if (!todo.includes(form.current.todo.value)) {
+        //     setTodo(prevItem => [...prevItem, form.current.todo.value])
+        // }
 
-        form.current.todo.value="";
+        // form.current.todo.value = "";
+        if (inputRef.current.value != '') {
+            let arr = [...todo];
+            arr.push(inputRef.current.value);
+            setTodo(arr);
+            inputRef.current.value = '';
+        }
     }
 
     const editTodolist = (index) => {
@@ -34,7 +42,7 @@ function Todo() {
 
     const deleteTodo = (index) => {
         const updateTodo = [...todo];
-        updateTodo.splice(index, 1); 
+        updateTodo.splice(index, 1);
         setTodo(updateTodo);
     };
     const arrayDataItems = todo.map((item, index) => (
@@ -50,14 +58,11 @@ function Todo() {
     return (
         <section>
             <section>
-                <form ref={form}>
-                    <input type='text' name='todo'
+                <form ref={form} onSubmit={handleTodo}>
+                    <input ref={inputRef} type='text' name='todo'
                         placeholder='Enter the todo' />
-
-                    <button type='submit' onClick={handleTodo}>
-                        {
-                          form.current.todo.value ===  '' ? "add" : "update"
-                        }
+                    <button type='submit'>
+                        Submit
                     </button>
                 </form>
             </section>
