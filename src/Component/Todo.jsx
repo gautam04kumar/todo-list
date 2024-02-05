@@ -46,7 +46,7 @@ function Todo() {
         <section>
             <section>
                 <form ref={form} onSubmit={handleTodo} >
-                    <input className="m-5" ref={inputRef} type='text' name='todo'
+                    <input className="m-5 ml-28" ref={inputRef} type='text' name='todo'
                         placeholder='Enter the todo' />
                     <button   type='submit'>
                         Submit
