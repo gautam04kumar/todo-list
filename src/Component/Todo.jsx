@@ -7,11 +7,11 @@ function Todo() {
     const [todo, setTodo] = useState([]);
     const [editTodo, setEditTodo] = useState(null)
 
- 
+
 
     let handleTodo = (event) => {
         event.preventDefault();
-       
+
         if (inputRef.current.value != '') {
             let arr = [...todo];
             arr.push(inputRef.current.value);
@@ -33,10 +33,18 @@ function Todo() {
         setTodo(updateTodo);
     };
     const arrayDataItems = todo.map((item, index) => (
-        <li key={index}>
+        <li key={index}
+            className='mb-1 bg-gray-300
+              border-solid border-2 text p-1
+          '>
             {item}
-            <button onClick={() => editTodolist(index)}>Edit</button>
-            <button onClick={() => deleteTodo(index)}>Delete</button>
+            <button className=' ml-2  bg-white border-solid border-2  rounded-md'
+                onClick={() => editTodolist(index)}
+            >Edit</button>
+
+            <button className=' ml-2 bg-red-600 border-solid border-2   rounded-md'
+                onClick={() => deleteTodo(index)}>
+                Delete</button>
 
         </li>));
 
@@ -46,15 +54,19 @@ function Todo() {
         <section>
             <section>
                 <form ref={form} onSubmit={handleTodo} >
-                    <input className="m-5 ml-28" ref={inputRef} type='text' name='todo'
+                    <input className="my-5 ml-80 border-solid border-2 rounded border-slate-600 "
+                        ref={inputRef}
+                        type='text'
+                        name='todo'
                         placeholder='Enter the todo' />
-                    <button   type='submit'>
+                    <button className='bg-green-500 text-white border-solid ml-1 border-2 border-slate-700 rounded-lg'
+                        type='submit'>
                         Submit
                     </button>
                 </form>
             </section>
-            <section>
-                <ul>{arrayDataItems}</ul>
+            <section className='  ml-80 w-60  flex-0'>
+                <ul className=''>{arrayDataItems}</ul>
             </section>
         </section>
     )
